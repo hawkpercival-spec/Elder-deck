@@ -1,0 +1,34 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "Elder Deck & Sanctuary of Sovngarde",
+  "colors": {
+    "primary": "#d4af37",
+    "light": "#f1e5ac",
+    "dark": "#1a1814",
+    "anchors": {
+      "from": "#d4af37",
+      "to": "#b8860b"
+    }
+  },
+  "navigation": [
+    {
+      "group": "Overview",
+      "pages": [
+        "docs/introduction",
+        "docs/quickstart"
+      ]
+    },
+    {
+      "group": "Core Architecture",
+      "pages": [
+        "docs/architecture"
+      ]
+    },
+    {
+      "group": "API Reference",
+      "pages": [
+        "docs/api/endpoints"
+      ]
+    }
+  ]
+}

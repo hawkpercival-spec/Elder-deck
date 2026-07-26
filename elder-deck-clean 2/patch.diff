@@ -1,0 +1,46 @@
+--- src/components/JoinTheBand.tsx
++++ src/components/JoinTheBand.tsx
+@@ -1035,21 +1035,33 @@
+   }, [user]);
+ 
+-  // Fisher-Yates Random Shuffle Algorithm for 2-Day AI Pairing
++  // Algorithmic Selection for 2-Day AI Pairing
+   const perform2DayAiShuffle = async (poolOverride?: SoulCandidate[]) => {
+     const pool = (poolOverride || covenPublicSouls).filter((p) => p.id !== user?.uid);
+     if (pool.length === 0) {
+       setAiSelectedDailySouls([]);
+       return [];
+     }
+ 
+-    // Fisher-Yates Random Shuffle Algorithm
+-    const shuffled = [...pool];
+-    for (let i = shuffled.length - 1; i > 0; i--) {
+-      const j = Math.floor(Math.random() * (i + 1));
+-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+-    }
+-
+-    const selectedFour = shuffled.slice(0, 4);
++    // Algorithmic scoring based on shared interests, platforms, and genre
++    const scoredPool = pool.map(candidate => {
++      let score = 50; // base score
++      const soulInterests = candidate.interests || [];
++      const sharedInterests = soulInterests.filter((i) =>
++        myProfileInterests.some((ui) => ui.toLowerCase().trim() === i.toLowerCase().trim())
++      );
++      score += Math.min(20, sharedInterests.length * 5);
++      const soulPlatforms = candidate.streamingAccounts || [];
++      const sharedPlatforms = soulPlatforms.filter((p) =>
++        myProfileStreaming.some((up) => up.toLowerCase().trim() === p.toLowerCase().trim())
++      );
++      score += Math.min(15, sharedPlatforms.length * 8);
++      const soulGenre = (candidate.favoriteGenre || "").toLowerCase().trim();
++      const userGenre = (myProfileGenre || "").toLowerCase().trim();
++      if (soulGenre === userGenre && userGenre !== "") score += 15;
++      else if (userGenre !== "" && (soulGenre.includes(userGenre) || userGenre.includes(soulGenre))) score += 10;
++      score += Math.random() * 10;
++      return { candidate, score };
++    });
++    scoredPool.sort((a, b) => b.score - a.score);
++    const selectedFour = scoredPool.slice(0, 4).map(sc => sc.candidate);
+ 
+     const pairedIds = selectedFour.map((s) => s.id);

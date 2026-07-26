@@ -1,0 +1,107 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper to check if user is signed in
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // Helper to check if user is accessing their own data
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+
+    // Rules for user profile documents
+    match /users/{userId} {
+      allow read, write: if isSignedIn() && isOwner(userId);
+
+      // Rules for user payment logs
+      match /payment_logs/{paymentId} {
+        allow read, write: if isSignedIn() && isOwner(userId);
+      }
+
+      // Rules for user drawings/history
+      match /history/{entryId} {
+        allow read, write: if isSignedIn() && isOwner(userId);
+      }
+
+      // Rules for user prophecies
+      match /prophecies/{prophecyId} {
+        allow read, write: if isSignedIn() && isOwner(userId);
+      }
+
+      // Rules for user journals/reflections
+      match /journals/{journalId} {
+        allow read, write: if isSignedIn() && isOwner(userId);
+      }
+
+      // Rules for social band candidate matches
+      match /band_candidates/{candidateId} {
+        allow read, write: if isSignedIn() && isOwner(userId);
+      }
+
+      // Rules for match notifications
+      match /match_notifications/{notificationId} {
+        allow read, write: if isSignedIn() && isOwner(userId);
+      }
+
+      // Rules for daily pairings metadata
+      match /pairings_meta/{metaId} {
+        allow read, write: if isSignedIn() && isOwner(userId);
+      }
+
+      // Rules for daily pairings historical logs
+      match /pairings_history/{pairingId} {
+        allow read, write: if isSignedIn() && isOwner(userId);
+      }
+
+      // Rules for chat messages
+      match /chats/{chatId} {
+        allow read, write: if isSignedIn() && isOwner(userId);
+
+        match /messages/{messageId} {
+          allow read, write: if isSignedIn() && isOwner(userId);
+        }
+      }
+
+      // Rules for band members
+      match /band_roster/{memberId} {
+        allow read, write: if isSignedIn() && isOwner(userId);
+      }
+
+      // Rules for linked streaming accounts
+      match /streaming_accounts/{accountId} {
+        allow read, write: if isSignedIn() && isOwner(userId);
+      }
+    }
+
+    // Rules for public real soul profiles
+    match /public_souls/{soulId} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn();
+    }
+
+    // Rules for email band invitations
+    match /band_invites/{inviteId} {
+      allow read, write: if isSignedIn();
+    }
+
+    // Rules for watch party events & scheduled movie nights
+    match /watch_party_events/{eventId} {
+      allow read, write: if isSignedIn();
+    }
+
+    // Rules for global subscription payment ledger
+    match /payment_logs/{paymentId} {
+      allow read, write: if isSignedIn();
+    }
+
+    // Rules for global app registry accounts & real-time tracking
+    match /app_registry_users/{userId} {
+      allow read, write: if isSignedIn();
+    }
+    match /app_registry_stats/{statId} {
+      allow read, write: if isSignedIn();
+    }
+  }
+}

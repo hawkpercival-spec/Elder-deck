@@ -1,0 +1,37 @@
+--- src/App.tsx
++++ src/App.tsx
+@@ -218,8 +218,25 @@
+ 
+   // Monitor subscription status in Firestore, local cache, or via Exempt list
+   useEffect(() => {
+-    // Always allow users to enjoy the applet
+-    setIsSubscribed(true);
++    if (!user) {
++      const localSub = localStorage.getItem("elder_deck_subscribed_v1") === "true";
++      setIsSubscribed(localSub);
++      return;
++    }
++
++    // Real-time Firestore subscription check
++    const userDocRef = doc(db, "users", user.uid);
++    const unsubscribe = onSnapshot(userDocRef, (docSnap) => {
++      if (docSnap.exists() && docSnap.data().isSubscribed) {
++        setIsSubscribed(true);
++        localStorage.setItem("elder_deck_subscribed_v1", "true");
++      } else {
++        const localSub = localStorage.getItem("elder_deck_subscribed_v1") === "true";
++        if (localSub) {
++          setDoc(userDocRef, { isSubscribed: true }, { merge: true });
++        }
++        setIsSubscribed(localSub);
++      }
++    }, (error) => {
++      console.error("Firestore user status subscription error:", error);
++      const localSub = localStorage.getItem("elder_deck_subscribed_v1") === "true";
++      setIsSubscribed(localSub);
++    });
++
++    return () => unsubscribe();
+   }, [user]);
+ 
+   // Trigger specialized popup for Elliot when logging in for the first time

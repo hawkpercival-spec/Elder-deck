@@ -1,0 +1,40 @@
+---
+title: "API Endpoints"
+description: "Reference for server-side Express API endpoints."
+---
+
+# API Reference
+
+The backend server exposes secure REST endpoints proxied for the frontend.
+
+## Endpoints
+
+### Health Check
+\`\`\`http
+GET /api/health
+\`\`\`
+Returns the server status.
+
+### Generate Meditation Exercise
+\`\`\`http
+POST /api/generate-meditation-exercise
+\`\`\`
+Generates a bespoke medieval contemplation exercise using Gemini AI.
+
+**Request Body**:
+\`\`\`json
+{
+  "cardName": "The Sovereign",
+  "cardArchetype": "Ruler",
+  "cardRarity": "Legendary",
+  "cardLore": "...",
+  "cardMeaning": "...",
+  "temperament": "Stoic"
+}
+\`\`\`
+
+### Synthesize Prophecy
+\`\`\`http
+POST /api/synthesize-prophecy
+\`\`\`
+Synthesizes user journal reflections and drawn card lore into an ornate destiny scroll.

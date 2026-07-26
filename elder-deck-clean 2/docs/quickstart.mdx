@@ -1,0 +1,46 @@
+---
+title: "Quickstart"
+description: "Get up and running with Elder Deck & Sanctuary of Sovngarde locally and in production."
+---
+
+# Quickstart Guide
+
+Follow these steps to set up the project locally and configure your environment.
+
+## Prerequisites
+
+- **Node.js**: v20 or higher
+- **npm** or **bun**
+
+## Installation
+
+1. Clone the repository and install dependencies:
+   \`\`\`bash
+   npm install
+   \`\`\`
+
+2. Configure environment variables (`.env`):
+   \`\`\`bash
+   cp .env.example .env
+   \`\`\`
+   Set the server-side secrets (`GEMINI_API_KEY`, `STRIPE_SECRET_KEY`,
+   `WATCHMODE_API_KEY`, `APP_URL`) and the Firebase client values
+   (`VITE_FIREBASE_API_KEY`, `VITE_FIREBASE_AUTH_DOMAIN`,
+   `VITE_FIREBASE_PROJECT_ID`, `VITE_FIREBASE_APP_ID`, plus the optional
+   `VITE_FIREBASE_*` entries) from the Firebase console.
+
+   <Warning>
+     No credentials are committed to this repository. `.env` and
+     `firebase-applet-config.json` are gitignored — keep them out of version
+     control and supply values via CI/CD secrets when deploying.
+   </Warning>
+
+3. Run the development server:
+   \`\`\`bash
+   npm run dev
+   \`\`\`
+
+4. Build for production:
+   \`\`\`bash
+   npm run build
+   \`\`\`

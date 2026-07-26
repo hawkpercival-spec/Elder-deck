@@ -1,0 +1,421 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User profile and subscription configuration",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "isSubscribed": {
+          "type": "boolean"
+        },
+        "covenantStatus": {
+          "type": "string"
+        },
+        "subscriptionCurrency": {
+          "type": "string"
+        },
+        "subscriptionAmount": {
+          "type": "number"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    },
+    "PaymentLog": {
+      "title": "Payment Log",
+      "description": "Log of subscription payment transactions and currency records",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "sessionId": {
+          "type": "string"
+        },
+        "paymentMethod": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "nextBillingCycle": {
+          "type": "string"
+        }
+      }
+    },
+    "HistoryEntry": {
+      "title": "History Entry",
+      "description": "Card reading history item",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "cards": {
+          "type": "array"
+        }
+      }
+    },
+    "Prophecy": {
+      "title": "Prophecy",
+      "description": "Recorded prophecy from the Oracle",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "question": {
+          "type": "string"
+        },
+        "answer": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string"
+        }
+      }
+    },
+    "JournalEntry": {
+      "title": "Journal Entry",
+      "description": "User crypt journal reflection",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        }
+      }
+    },
+    "PublicSoul": {
+      "title": "Public Soul Profile",
+      "description": "Real published soul candidate profile for Band matching",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "bio": {
+          "type": "string"
+        },
+        "favoriteGenre": {
+          "type": "string"
+        },
+        "streamingAccounts": {
+          "type": "array"
+        },
+        "compatibility": {
+          "type": "number"
+        }
+      }
+    },
+    "BandInvite": {
+      "title": "Band Invitation",
+      "description": "Email invitation to join a user's 10-member Band",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "inviterUid": {
+          "type": "string"
+        },
+        "inviterEmail": {
+          "type": "string"
+        },
+        "inviterName": {
+          "type": "string"
+        },
+        "recipientEmail": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    },
+    "WatchPartyEvent": {
+      "title": "Scheduled Watch Party Event",
+      "description": "Scheduled band movie night with RSVP system",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "movieTitle": {
+          "type": "string"
+        },
+        "platform": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "time": {
+          "type": "string"
+        },
+        "telepartyUrl": {
+          "type": "string"
+        },
+        "hostName": {
+          "type": "string"
+        },
+        "hostUid": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "rsvps": {
+          "type": "object"
+        }
+      }
+    },
+    "PairingMeta": {
+      "title": "Daily 4 Souls Pairing Meta",
+      "description": "Algorithmic selection record for daily 4 souls pairing cycle",
+      "type": "object",
+      "properties": {
+        "pairedAt": {
+          "type": "number"
+        },
+        "pairedIds": {
+          "type": "array"
+        },
+        "souls": {
+          "type": "array"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    },
+    "BandCandidate": {
+      "title": "Saved AI Match Candidate",
+      "description": "AI match candidate soul saved by the user into candidates or band",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "bio": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "compatibility": {
+          "type": "number"
+        },
+        "savedAt": {
+          "type": "string"
+        },
+        "favoriteGenre": {
+          "type": "string"
+        },
+        "interests": {
+          "type": "array"
+        },
+        "streamingAccounts": {
+          "type": "array"
+        }
+      }
+    },
+    "MatchNotification": {
+      "title": "Match Notification",
+      "description": "Resonance match alert notification record",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "soulId": {
+          "type": "string"
+        },
+        "soulName": {
+          "type": "string"
+        },
+        "matchScore": {
+          "type": "number"
+        },
+        "message": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    },
+    "AppRegistryUser": {
+      "title": "App Registry Registered User Account",
+      "description": "Real-time record of registered app user accounts in the global registry",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "registeredAt": {
+          "type": "string"
+        },
+        "lastActiveAt": {
+          "type": "string"
+        },
+        "providerId": {
+          "type": "string"
+        },
+        "covenantStatus": {
+          "type": "string"
+        },
+        "isSubscribed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "AppRegistryStats": {
+      "title": "Global App Registry Stats",
+      "description": "Real-time summary statistics for registered app accounts",
+      "type": "object",
+      "properties": {
+        "totalUsersCount": {
+          "type": "number"
+        },
+        "activeSubscribersCount": {
+          "type": "number"
+        },
+        "lastRegisteredEmail": {
+          "type": "string"
+        },
+        "lastRegisteredAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "firestore": {
+    "/app_registry_users/{userId}": {
+      "schema": "AppRegistryUser",
+      "description": "Real-time directory of all registered user accounts in the app registry"
+    },
+    "/app_registry_stats/{statId}": {
+      "schema": "AppRegistryStats",
+      "description": "Global aggregate tracking real-time user registrations and statistics"
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile document storing account settings, subscription status, and preferences"
+    },
+    "/users/{userId}/pairings_meta/{metaId}": {
+      "schema": "PairingMeta",
+      "description": "Current active 2-day algorithmic selection record for Daily 4 Souls"
+    },
+    "/users/{userId}/pairings_history/{pairingId}": {
+      "schema": "PairingMeta",
+      "description": "Historical log of all 2-day algorithmic 4 soul selections"
+    },
+    "/users/{userId}/band_candidates/{candidateId}": {
+      "schema": "BandCandidate",
+      "description": "Saved AI match selections and candidates for user's band"
+    },
+    "/users/{userId}/match_notifications/{notificationId}": {
+      "schema": "MatchNotification",
+      "description": "Resonance match notifications and alerts"
+    },
+    "/users/{userId}/payment_logs/{paymentId}": {
+      "schema": "PaymentLog",
+      "description": "User's payment transactions and receipt log history"
+    },
+    "/payment_logs/{paymentId}": {
+      "schema": "PaymentLog",
+      "description": "Global payment transaction ledger for subscription verification"
+    },
+    "/users/{userId}/history/{entryId}": {
+      "schema": "HistoryEntry",
+      "description": "Saved tarot card reading history"
+    },
+    "/users/{userId}/prophecies/{prophecyId}": {
+      "schema": "Prophecy",
+      "description": "Saved oracle prophecies"
+    },
+    "/users/{userId}/journals/{journalId}": {
+      "schema": "JournalEntry",
+      "description": "Crypt journal entry"
+    },
+    "/public_souls/{soulId}": {
+      "schema": "PublicSoul",
+      "description": "Directory of real registered soul profiles"
+    },
+    "/band_invites/{inviteId}": {
+      "schema": "BandInvite",
+      "description": "Email invitations to join a user's Band"
+    },
+    "/watch_party_events/{eventId}": {
+      "schema": "WatchPartyEvent",
+      "description": "Scheduled band movie night events and RSVPs"
+    }
+  }
+}

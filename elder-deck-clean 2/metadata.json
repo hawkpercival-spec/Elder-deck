@@ -1,0 +1,6 @@
+{
+  "name": "Elder Deck: Medieval Card of the Day",
+  "description": "An atmospheric, Skyrim-inspired medieval 'Card of the Day' game. Shuffle the ancient runic deck to draw your daily fate, complete with high-fantasy archetypes, attributes, and prophetic phrases.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

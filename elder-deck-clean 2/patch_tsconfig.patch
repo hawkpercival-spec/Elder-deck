@@ -1,0 +1,10 @@
+--- tsconfig.json
++++ tsconfig.json
+@@ -23,5 +23,6 @@
+     },
+     "allowImportingTsExtensions": true,
+     "noEmit": true
+-  }
++  },
++  "exclude": ["node_modules", "dist"]
+ }

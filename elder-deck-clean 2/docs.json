@@ -1,0 +1,39 @@
+{
+  "project": "Elder Deck & Sanctuary of Sovngarde",
+  "version": "1.0.0",
+  "description": "An immersive medieval tarot oracle, prophecy generator, and sanctuary meditation application.",
+  "architecture": {
+    "frontend": "React 19, TypeScript, Tailwind CSS, Lucide Icons, Motion",
+    "backend": "Express.js server with Gemini API integration for bespoke meditation and prophecy synthesis (/api/*)",
+    "database": "Firebase Firestore & Firebase Authentication",
+    "security": "Firestore security rules configured in /firestore.rules"
+  },
+  "scripts": {
+    "dev": "tsx server.ts",
+    "build": "vite build && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs",
+    "build:docs": "vite build --outDir docs",
+    "start": "node dist/server.cjs",
+    "lint": "tsc --noEmit"
+  },
+  "apiEndpoints": [
+    {
+      "path": "/api/health",
+      "method": "GET",
+      "description": "Health check endpoint"
+    },
+    {
+      "path": "/api/generate-meditation-exercise",
+      "method": "POST",
+      "description": "Generates a personalized medieval contemplation exercise for a drawn tarot card using Gemini API"
+    },
+    {
+      "path": "/api/synthesize-prophecy",
+      "method": "POST",
+      "description": "Synthesizes user journal entries and card lore into an ornate destiny scroll"
+    }
+  ],
+  "deployment": {
+    "hosting": "Cloud Run / GitHub Pages (/docs directory)",
+    "ciCd": ".github/workflows/ci.yml"
+  }
+}
